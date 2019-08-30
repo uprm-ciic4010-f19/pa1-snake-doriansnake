@@ -22,6 +22,7 @@ public abstract class WorldBase {
     //automatically calculated, depends on previous input.
     //The size of each box, the size of each box will be GridPixelsize x GridPixelsize.
     
+    //Added the size to be 60(x60)
     public int GridPixelsize=60;
     
 

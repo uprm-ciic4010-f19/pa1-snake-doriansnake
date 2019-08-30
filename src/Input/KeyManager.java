@@ -44,8 +44,8 @@ public class KeyManager implements KeyListener {
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
-
-		pbutt = keys[KeyEvent.VK_ESCAPE];
+		
+		
 		
 		//adds the tail when pressing N
 		addt = keys[KeyEvent.VK_N];

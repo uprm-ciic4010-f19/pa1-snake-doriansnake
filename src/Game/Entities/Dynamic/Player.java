@@ -41,11 +41,12 @@ public class Player {
     	int y= yCoord;
     	
         moveCounter++;
-        if(moveCounter>=5) {
+        if(moveCounter>=i) {
             checkCollisionAndMove();
             
             //changed from 0 to 4 -- the ID
-            moveCounter=4;
+            //Back to 0 again after the + / - 
+            moveCounter=0;
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
             direction="Up";
@@ -58,6 +59,11 @@ public class Player {
             
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
             handler.getWorld().body.addFirst(new Tail(x, y, handler));
+            
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+        	i++;
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+        	i--;
         }
 
     }
@@ -115,7 +121,8 @@ public class Player {
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(Color.GREEN);
+               //Changed color to green
+            	g.setColor(Color.GREEN);
 
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
                     g.fillRect((i*handler.getWorld().GridPixelsize),

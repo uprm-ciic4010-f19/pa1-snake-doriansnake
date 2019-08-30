@@ -47,6 +47,8 @@ public class DisplayScreen {
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
+        
+        //Added the purple color here as a RBG
         Color Purple = new Color(128,0,128);
         canvas.setBackground(Purple);
 

@@ -36,9 +36,15 @@ public class Player {
     }
 
     public void tick(){
+    	//Initialized x and y coords from above
+    	int x= xCoord;
+    	int y= yCoord;
+    	
         moveCounter++;
         if(moveCounter>=5) {
             checkCollisionAndMove();
+            
+            //changed from 0 to 4 -- the ID
             moveCounter=4;
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
@@ -49,6 +55,9 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
+            
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
+            handler.getWorld().body.addFirst(new Tail(x, y, handler));
         }
 
     }

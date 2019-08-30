@@ -17,6 +17,8 @@ public class Player {
 
     public int xCoord;
     public int yCoord;
+    public int i;
+    public int score;
 
     public int moveCounter;
 
@@ -37,7 +39,7 @@ public class Player {
         moveCounter++;
         if(moveCounter>=5) {
             checkCollisionAndMove();
-            moveCounter=0;
+            moveCounter=4;
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
             direction="Up";
@@ -104,7 +106,7 @@ public class Player {
         Random r = new Random();
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(Color.WHITE);
+                g.setColor(Color.GREEN);
 
                 if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
                     g.fillRect((i*handler.getWorld().GridPixelsize),
@@ -120,6 +122,7 @@ public class Player {
     }
 
     public void Eat(){
+    	score++;
         lenght++;
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;

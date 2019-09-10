@@ -15,6 +15,7 @@ public class KeyManager implements KeyListener {
 	public boolean pbutt=false;
 	//N boolean
 	public boolean addt=false;
+	public boolean pause=false;
 	
 
 
@@ -49,8 +50,10 @@ public class KeyManager implements KeyListener {
 		
 		//adds the tail when pressing N
 		addt = keys[KeyEvent.VK_N];
-
 		
+		//Pause
+		pause = keys[KeyEvent.VK_ESCAPE];
+
 
 	}
 

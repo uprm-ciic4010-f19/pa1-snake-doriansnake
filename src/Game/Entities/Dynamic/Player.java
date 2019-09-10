@@ -21,6 +21,7 @@ public class Player {
 	public int yCoord;
 	public int i;
 	public int score;
+	public int currScore;
 
 	public int moveCounter;
 
@@ -33,7 +34,9 @@ public class Player {
 		moveCounter = 0;
 		direction= "Right";
 		justAte = false;
-		lenght= 1;
+		lenght = 1;
+		score = 0;
+		currScore = 0;
 
 	}
 
@@ -57,7 +60,7 @@ public class Player {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT) && direction != "Right")	{ direction="Left"; }
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT) && direction != "Left")	{ direction="Right"; }
 
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N))		{ handler.getWorld().body.addFirst(new Tail(x, y, handler)); }
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N))		{ handler.getWorld().body.addFirst(new Tail(x, y, handler)); currScore++; }
 
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) 	{ i++; }
 
@@ -110,6 +113,7 @@ public class Player {
 
 		if(handler.getWorld().appleLocation[xCoord][yCoord]){
 			Eat();
+			currScore++;
 		}
 
 		if(!handler.getWorld().body.isEmpty()) {
@@ -133,15 +137,19 @@ public class Player {
 							handler.getWorld().GridPixelsize,
 							handler.getWorld().GridPixelsize);
 				}
-
 			}
 		}
 
+		int score = (int) Math.sqrt(2 * currScore + 1);
+
+		g.setColor(Color.WHITE); 
+		g.setFont(new Font ("Times New Roman", Font.BOLD, 20));
+		g.drawString("Score: "+ score, 10, 40);
 
 	}
 
 	public void Eat(){
-		score++;
+		currScore++;
 		lenght++;
 		Tail tail= null;
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;

@@ -34,7 +34,7 @@ public class Player {
 		moveCounter = 0;
 		direction= "Right";
 		justAte = false;
-		lenght = 3;
+		lenght = 1;
 		score = 0;
 		currScore = 0;
 

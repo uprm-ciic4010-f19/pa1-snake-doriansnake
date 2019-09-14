@@ -5,7 +5,7 @@ import Main.Handler;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-
+import Game.Entities.Static.Apple;
 import Game.GameStates.State;
 
 /**
@@ -23,6 +23,7 @@ public class Player {
 	public int score;
 	public int currScore;
 	public int steps;
+	public Tail delete;
 
 	public int moveCounter;
 
@@ -118,7 +119,17 @@ public class Player {
 
 		if(handler.getWorld().appleLocation[xCoord][yCoord]){
 			Eat();
+			if(!handler.getWorld().apple.isGood()) {
+			removeTail();
+			double score = Math.sqrt(2 * currScore - 1);
+			steps=0;
 			currScore++;
+			if (score<0) {
+				score=0;
+			}
+		}else {
+			double score = Math.sqrt(2 * currScore + 1);
+			steps=0;
 		}
 
 		if(!handler.getWorld().body.isEmpty()) {
@@ -126,7 +137,14 @@ public class Player {
 			handler.getWorld().body.removeLast();
 			handler.getWorld().body.addFirst(new Tail(x, y,handler));
 		}
+		}
 
+	}
+
+	private void removeTail() {
+		delete = handler.getWorld().body.pop();
+		delete.removeT=true;
+		
 	}
 
 	public void render(Graphics g,Boolean[][] playeLocation){
@@ -157,7 +175,7 @@ public class Player {
 			}
 		}
 
-		double score = Math.sqrt(2 * currScore + 1);
+		
 
 		g.setColor(Color.WHITE); 
 		g.setFont(new Font ("Times New Roman", Font.BOLD, 20));

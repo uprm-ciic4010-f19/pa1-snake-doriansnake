@@ -17,6 +17,12 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
+    public boolean isGood() {
+    	if(handler.getWorld().player.steps >=100 ) {
+    		return false;
+    	}
+    	return true;
+    }
 
 
 }

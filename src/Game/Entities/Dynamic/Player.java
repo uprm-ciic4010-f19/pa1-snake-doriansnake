@@ -22,6 +22,7 @@ public class Player {
 	public int i;
 	public int score;
 	public int currScore;
+	public int steps;
 
 	public int moveCounter;
 
@@ -45,6 +46,7 @@ public class Player {
 		int x= xCoord;
 		int y= yCoord;
 
+		steps++;
 		moveCounter++;
 		if(moveCounter>=i) {
 			checkCollisionAndMove();
@@ -66,6 +68,9 @@ public class Player {
 
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) 	{ i--; }
 
+	}
+	public void steps() {
+		
 	}
 
 	public void checkCollisionAndMove(){
@@ -140,7 +145,7 @@ public class Player {
 			}
 		}
 
-		int score = (int) Math.sqrt(2 * currScore + 1);
+		double score = Math.sqrt(2 * currScore + 1);
 
 		g.setColor(Color.WHITE); 
 		g.setFont(new Font ("Times New Roman", Font.BOLD, 20));
@@ -148,8 +153,7 @@ public class Player {
 
 	}
 
-	public void Eat(){
-		currScore++;
+	public void Eat() {
 		lenght++;
 		Tail tail= null;
 		handler.getWorld().appleLocation[xCoord][yCoord]=false;
